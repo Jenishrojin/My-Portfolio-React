@@ -3,6 +3,7 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/My-Portfolio-Updated/',
   plugins: [react()],
   server: {
     port: 3000,
