@@ -639,11 +639,28 @@ function ProjectModal({ project, onClose }) {
 }
 
 function Certifications() {
+  const [slide, setSlide] = useState(0)
+  const [touchStart, setTouchStart] = useState(null)
+
+  const moveSlide = (direction) => {
+    setSlide((current) => (current + direction + certifications.length) % certifications.length)
+  }
+
   return (
     <RevealSection className="certifications">
       <div className="max-width">
         <h2 className="title">Licences and Certifications</h2>
-        <div className="certification-grid">
+        <div
+          className="certification-grid"
+          style={{ '--certification-slide': slide }}
+          onTouchStart={(event) => setTouchStart(event.touches[0].clientX)}
+          onTouchEnd={(event) => {
+            if (touchStart === null) return
+            const distance = touchStart - event.changedTouches[0].clientX
+            if (Math.abs(distance) > 40) moveSlide(distance > 0 ? 1 : -1)
+            setTouchStart(null)
+          }}
+        >
           {certifications.map(([title, issuer, focus, url], index) => (
             <article className="certification-card" key={title} style={{ '--cert-delay': `${index * 0.12}s` }}>
               <div className="certification-topline">
@@ -661,6 +678,25 @@ function Certifications() {
               </a>
             </article>
           ))}
+        </div>
+        <div className="certification-carousel-controls">
+          <button type="button" onClick={() => moveSlide(-1)} aria-label="Previous certificate">
+            <i className="fa-solid fa-arrow-left"></i>
+          </button>
+          <div className="certification-carousel-dots">
+            {certifications.map(([title], index) => (
+              <button
+                type="button"
+                className={index === slide ? 'active' : ''}
+                onClick={() => setSlide(index)}
+                aria-label={`Show ${title}`}
+                key={title}
+              ></button>
+            ))}
+          </div>
+          <button type="button" onClick={() => moveSlide(1)} aria-label="Next certificate">
+            <i className="fa-solid fa-arrow-right"></i>
+          </button>
         </div>
       </div>
     </RevealSection>
