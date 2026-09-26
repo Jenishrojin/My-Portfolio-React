@@ -176,7 +176,7 @@ section .title::after {
 
 .home {
   display: flex;
-  background: url('/images/Profile/Banner.jpg') no-repeat center;
+  background: var(--hero-background) no-repeat center;
   height: 100vh;
   color: #fff;
   min-height: 500px;
@@ -951,7 +951,7 @@ section .title::after {
 .home {
   background:
     linear-gradient(105deg, rgba(15, 23, 42, 0.82), rgba(37, 99, 235, 0.22), rgba(251, 146, 60, 0.18)),
-    url('/images/Profile/Banner.jpg') no-repeat center;
+    var(--hero-background) no-repeat center;
   background-size: cover;
 }
 

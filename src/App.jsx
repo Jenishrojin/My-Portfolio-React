@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import './App.css'
 
 const roles = ['Full Stack Developer', 'Frontend Developer', 'Designer', 'EDI Analyst']
+const publicAsset = (path) => `${import.meta.env.BASE_URL}${path}`
 
 const navLinks = [
   ['Home', 'home'],
@@ -62,23 +63,23 @@ const experiences = [
 ]
 
 const technicalSkills = [
-  ['Java', '/images/Technical/Java.png', 82, 'Backend development and object-oriented programming'],
-  ['Python', '/images/Technical/py.png', 78, 'Automation, scripting, and AI/ML workflows'],
-  ['TypeScript', '/images/Technical/typescript.svg', 92, 'Typed JavaScript for scalable applications'],
-  ['WordPress', '/images/Technical/wordpress.svg', 88, 'Content management and WordPress development'],
-  ['Javascript', '/images/Technical/js.png', 86, 'Interactive frontend behavior'],
-  ['Node.JS', '/images/Technical/node.png', 76, 'Server-side JavaScript APIs'],
-  ['Golang', '/images/Technical/golang.svg', 78, 'Fast backend services and API development'],
-  ['React', '/images/Technical/react.png', 84, 'Component-driven UI development'],
-  ['MongoDB', '/images/Technical/mongo.png', 70, 'Document database modeling'],
-  ['Mysql', '/images/Technical/mysql.png', 80, 'Relational database design'],
-  ['PostgreSQL', '/images/Technical/postgres.svg', 72, 'Relational database design and SQL'],
-  ['Docker', '/images/Technical/docker.svg', 68, 'Containerization and deployment workflows'],
+  ['Java', publicAsset('images/Technical/Java.png'), 82, 'Backend development and object-oriented programming'],
+  ['Python', publicAsset('images/Technical/py.png'), 78, 'Automation, scripting, and AI/ML workflows'],
+  ['TypeScript', publicAsset('images/Technical/typescript.svg'), 92, 'Typed JavaScript for scalable applications'],
+  ['WordPress', publicAsset('images/Technical/wordpress.svg'), 88, 'Content management and WordPress development'],
+  ['Javascript', publicAsset('images/Technical/js.png'), 86, 'Interactive frontend behavior'],
+  ['Node.JS', publicAsset('images/Technical/node.png'), 76, 'Server-side JavaScript APIs'],
+  ['Golang', publicAsset('images/Technical/golang.svg'), 78, 'Fast backend services and API development'],
+  ['React', publicAsset('images/Technical/react.png'), 84, 'Component-driven UI development'],
+  ['MongoDB', publicAsset('images/Technical/mongo.png'), 70, 'Document database modeling'],
+  ['Mysql', publicAsset('images/Technical/mysql.png'), 80, 'Relational database design'],
+  ['PostgreSQL', publicAsset('images/Technical/postgres.svg'), 72, 'Relational database design and SQL'],
+  ['Docker', publicAsset('images/Technical/docker.svg'), 68, 'Containerization and deployment workflows'],
 ]
 
 const projects = [
   {
-    image: '/images/Projects/Ecommerce.jfif',
+    image: publicAsset('images/Projects/Ecommerce.jfif'),
     title: 'Ecommerce Purchase ',
     category: 'Full Stack',
     role: 'Full Stack Developer',
@@ -93,7 +94,7 @@ const projects = [
     caseStudy: ['Product listing flow', 'Backend order handling', 'MySQL user and product data'],
   },
   {
-    image: '/images/Projects/EMS.png',
+    image: publicAsset('images/Projects/EMS.png'),
     title: 'Employee Management System',
     category: 'Full Stack',
     role: 'Full Stack Developer',
@@ -109,7 +110,7 @@ const projects = [
     featured: true,
   },
   {
-    image: '/images/Projects/Hifives.png',
+    image: publicAsset('images/Projects/Hifives.png'),
     title: 'Hifives',
     category: 'Frontend',
     role: 'Full Stack Developer',
@@ -125,7 +126,7 @@ const projects = [
     featured: true,
   },
   {
-    image: '/images/Projects/Bank.jfif',
+    image: publicAsset('images/Projects/Bank.jfif'),
     title: 'Basic Banking Transaction System',
     category: 'Full Stack',
     role: 'Frontend Developer',
@@ -140,7 +141,7 @@ const projects = [
     caseStudy: ['Account management', 'Transaction flows', 'Balance inquiry interface'],
   },
   {
-    image: '/images/Projects/Payment.jpg',
+    image: publicAsset('images/Projects/Payment.jpg'),
     title: 'Payment Gateway Integration',
     category: 'Backend',
     role: 'Frontend Developer and Designer',
@@ -155,7 +156,7 @@ const projects = [
     caseStudy: ['Payment initiation', 'Gateway response handling', 'Checkout state management'],
   },
   {
-    image: '/images/Projects/Disease Prediction.jfif',
+    image: publicAsset('images/Projects/Disease Prediction.jfif'),
     title: 'Disease Prediction Using AI and ML',
     category: 'AI/ML',
     role: 'AI/ML Developer',
@@ -170,7 +171,7 @@ const projects = [
     caseStudy: ['Prediction pipeline', 'Medical input form', 'Result interpretation UI'],
   },
   {
-    image: '/images/Projects/Network Intrusisoj.jfif',
+    image: publicAsset('images/Projects/Network Intrusisoj.jfif'),
     title: 'Network Intrusion System',
     category: 'AI/ML',
     role: 'AI/ML Developer',
@@ -376,7 +377,10 @@ function About({ onPreviewResume }) {
         <h2 className="title">About me</h2>
         <div className="about-content">
           <div className="column left">
-            <img src="/images/Profile/profile-transparent.png" alt="Jenish Rojin S" />
+            <img
+              src={`${import.meta.env.BASE_URL}images/Profile/profile-transparent.png`}
+              alt="Jenish Rojin S"
+            />
           </div>
           <div className="column right">
             <div className="status-card">
@@ -874,7 +878,7 @@ function ResumePreview({ onClose }) {
             <h3>Jenish Rojin S</h3>
           </div>
           <div className="resume-modal-actions">
-            <a href="/RESUME.pdf" download>
+            <a href={`${import.meta.env.BASE_URL}RESUME.pdf`} download>
               <i className="fa-solid fa-download"></i>
               Download
             </a>
@@ -883,7 +887,10 @@ function ResumePreview({ onClose }) {
             </button>
           </div>
         </div>
-        <iframe src="/RESUME.pdf#toolbar=1&navpanes=0" title="Resume preview"></iframe>
+        <iframe
+          src={`${import.meta.env.BASE_URL}RESUME.pdf#toolbar=1&navpanes=0`}
+          title="Resume preview"
+        ></iframe>
       </div>
     </div>
   )
@@ -926,6 +933,10 @@ function App() {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
+    document.documentElement.style.setProperty(
+      '--hero-background',
+      `url("${publicAsset('images/Profile/Banner.jpg')}")`,
+    )
     localStorage.setItem('portfolio-theme', theme)
   }, [theme])
 
